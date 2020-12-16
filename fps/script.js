@@ -24,7 +24,9 @@ enableControls = true; //habilita la entrada de datos por ratón y teclado
 torch = true;
 objs = [];
 INTERSECTED = null;
+playwalks = false;
 intersects = [];
+
 
 function createGUI (withStats) {
   var gui = new dat.GUI();
@@ -61,7 +63,18 @@ function onMouseDown (event) {
       scene.onclick(event);
       console.log(intersects);
       if(intersects[0].object.name == 'item'){
+        // var pickAudio = new Audio('fps/sounds/pick.mp3');
+        // pickAudio.play();
+        var current = document.getElementById('count').innerHTML;
+        document.getElementById('count').innerHTML = "";
+        document.getElementById('count').innerHTML = parseInt(current) + 1;
+        sound = new Howl({
+          src: ['sounds/pick.mp3'], volume: 0.5
+        });
+        sound.play();
         removeEntity(intersects[0].object);
+      }else{
+        // pickAudio.stop();  
       }
       // removeEntity(intersects[0].object);
     }
@@ -79,19 +92,19 @@ function onMouseMove (event) {
     if ( INTERSECTED != intersects[ 0 ].object &&  intersects[ 0 ].object.name == 'item') {
 
       if ( INTERSECTED ) {
-        INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-        removeEntity(INTERSECTED);
+        // INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+        // removeEntity(INTERSECTED);
       }
 
       INTERSECTED = intersects[ 0 ].object;
-      INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-      INTERSECTED.material.emissive.setHex( 0xff0000 );
+      // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+      // INTERSECTED.material.emissive.setHex( 0xff0000 );
 
     }
 
   } else {
 
-    if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+    // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
     INTERSECTED = null;
 
@@ -99,7 +112,7 @@ function onMouseMove (event) {
 }
 
 function removeEntity(object) {
-  var selectedObject = scene.getObjectByName(object.name);
+  // var selectedObject = scene.getObjectByName(object.name);
   scene.remove( object );
   scene.animate();
 }
@@ -110,21 +123,25 @@ function onKeyDown (event) {
 
       case 38: // up
       case 87: // w
+        playwalks = true;
         moveForward = true;
         break;
 
       case 37: // left
       case 65: // a
+        playwalks = true;
         moveLeft = true;
         break;
 
       case 40: // down
       case 83: // s
+        playwalks = true;
         moveBackward = true;
         break;
 
       case 39: // right
       case 68: // d
+        playwalks = true;
         moveRight = true;
         break;
 
@@ -132,13 +149,13 @@ function onKeyDown (event) {
         jumping = true;
         break;
 
-      case 70: // f
-        torch = true;
-        break;
+      // case 70: // f
+      //   torch = true;
+      //   break;
 
-      case 81: // q
-        if (!fire) scene.changeWeapon();
-        break;
+      // case 81: // q
+      //   if (!fire) scene.changeWeapon();
+      //   break;
     }
   }
 
@@ -152,25 +169,29 @@ function onKeyUp (event) {
     switch( event.keyCode ) {
       case 38: // up
       case 87: // w
+        playwalks = false;
         moveForward = false;
         break;
 
       case 37: // left
       case 65: // a
+        playwalks = false;
         moveLeft = false;
         break;
 
       case 40: // down
       case 83: // s
+        playwalks = false;
         moveBackward = false;
         break;
 
-      case 70: // f
-        torch = false;
-        break;
+      // case 70: // f
+      //   torch = false;
+      //   break;
 
       case 39: // right
       case 68: // d
+        playwalks = false;
         moveRight = false;
         break;
     }
@@ -225,6 +246,10 @@ $(function () {
   var instructions = document.getElementById( 'instructions' );
   var title = document.getElementById('title');
   var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+
+  if(playwalks){
+    
+  }
 
   if ( havePointerLock ) {
 

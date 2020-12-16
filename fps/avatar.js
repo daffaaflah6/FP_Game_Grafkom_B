@@ -45,6 +45,10 @@ class Avatar {
 		var rotationMatrixR = new THREE.Matrix4();
 		rotationMatrixR.makeRotationY((360 - 90) * Math.PI / 180);
         this.rotationMatrices.push(rotationMatrixR);
+
+        this.sound = new Howl({
+            src: ['sounds/footsteps.mp3'], volume: 0.5
+        });
         
         var options = {
 			speedFactor: 0.5,
@@ -96,9 +100,16 @@ class Avatar {
         controls.getObject().position.set(this.avatar.position.x, this.avatar.position.y+5, this.avatar.position.z);
     }
 
+    playWalkSound(){
+        // setTimeout(() => {
+        //     this.sound.play();
+        // }, 1000);
+    }
+
     moveForward() {
         var target = this.camera.getWorldDirection();
         // this.hitTest();
+
         if(!this.lockMoveForward){
             var nextPosition = target.x + this.avatar.position.x;
             if(nextPosition <= this.posLimite && nextPosition >= -this.posLimite)

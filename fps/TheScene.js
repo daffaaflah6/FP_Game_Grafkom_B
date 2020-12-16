@@ -140,10 +140,12 @@ class TheScene extends Physijs.Scene {
   animate () {
     this.simulate();
 
+
     if (moveForward) this.avatar.moveForward();
     if (moveBackward) this.avatar.moveBackward();
     if (moveLeft) this.avatar.moveLeft();
     if (moveRight) this.avatar.moveRight();
+    if (playwalks) this.avatar.playWalkSound();
 
     if (jumping) {
       this.avatar.jump();
