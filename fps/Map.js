@@ -89,22 +89,67 @@ class Map {
       ++this.map_size;
     }
     
+    var table, wtable, tvf, plant1, bulb;
+
     mtlLoader.load( "models/table.mtl" , function ( materials ) {
         materials.preload();
         objLoader.setMaterials( materials );
         objLoader.load( "models/table.obj", function ( object ) {
-            object.position.set(-81, 0, -75);  
-            object.scale.set(6.5, 6.5, 6.5);
-            object.rotation.set(0, 0, 0);
-            scene.add(object);
-        });
-        objLoader.load( "models/bulb.obj", function ( object ) {
-            object.position.set(-80, 23.5, -80);  
-            object.scale.set(3, 3, 3);
-            object.rotation.set(-7.6, -5, 0);
-            scene.add(object);
+            table = object;
+            table.position.set(82, 0, -77.5);  
+            table.scale.set(6.5, 6.5, 6.5);
+            table.rotation.set(0, 0, 0);
+            scene.add(table);
         });
     });
+    mtlLoader.load( "models/wtable.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/wtable.obj", function ( object ) {
+            wtable = object;
+            wtable.position.set(0, 0, 0);  
+            wtable.scale.set(0.15, 0.15, 0.15);
+            wtable.rotation.set(0, 0, 0);
+            scene.add(wtable);
+        });
+    });
+    mtlLoader.load( "models/tv-furn.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/tv-furn.obj", function ( object ) {
+            tvf = object;
+            tvf.position.set(-107, -15, 110);  
+            tvf.scale.set(1, 1, 1);
+            tvf.rotation.set(0, 0, 0);
+            scene.add(tvf);
+        });
+    });
+    // mtlLoader.load( "models/y.mtl" , function ( materials ) {
+    //     materials.preload();
+    //     objLoader.setMaterials( materials );
+    //     objLoader.load( "models/y.obj", function ( object ) {
+    //         y = object;
+    //         y.position.set(0, 0, 0);  
+    //         y.scale.set(0, 0, 0);
+    //         y.rotation.set(0, 0, 0);
+    //         scene.add(y);
+    //     });
+    // });
+
+    objLoader.load( "models/bulb.obj", function ( object ) {
+        bulb = object; 
+        bulb.position.set(82, 23.5, -85);  
+        bulb.scale.set(3, 3, 3);
+        bulb.rotation.set(-7.6, -5, 0);
+        scene.add(bulb);
+    });
+    // objLoader.load( "models/x.obj", function ( object ) {
+    //     x = object;
+    //     x.position.set(0, 0, 0);  
+    //     x.scale.set(0, 0, 0);
+    //     x.rotation.set(0, 0, 0);
+    //     scene.add(x);
+    // });
 
     return this;
   }
