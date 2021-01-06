@@ -89,14 +89,14 @@ class Map {
       ++this.map_size;
     }
     
-    var table, wtable, tvf, plant1, bulb;
+    var table, wtable, tvf, gift, ironman, bowling, lamp1, lamp2, sofa, tv, bulb;
 
     mtlLoader.load( "models/table.mtl" , function ( materials ) {
         materials.preload();
         objLoader.setMaterials( materials );
         objLoader.load( "models/table.obj", function ( object ) {
             table = object;
-            table.position.set(82, 0, -77.5);  
+            table.position.set(-81, 0, -77.5);  
             table.scale.set(6.5, 6.5, 6.5);
             table.rotation.set(0, 0, 0);
             scene.add(table);
@@ -124,32 +124,91 @@ class Map {
             scene.add(tvf);
         });
     });
-    // mtlLoader.load( "models/y.mtl" , function ( materials ) {
-    //     materials.preload();
-    //     objLoader.setMaterials( materials );
-    //     objLoader.load( "models/y.obj", function ( object ) {
-    //         y = object;
-    //         y.position.set(0, 0, 0);  
-    //         y.scale.set(0, 0, 0);
-    //         y.rotation.set(0, 0, 0);
-    //         scene.add(y);
-    //     });
-    // });
+    mtlLoader.load( "models/gift.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/gift.obj", function ( object ) {
+            gift = object;
+            gift.position.set(0, 8.5, 0);  
+            gift.scale.set(0.35, 0.35, 0.35);
+            gift.rotation.set(11, 0, 0);
+            scene.add(gift);
+        });
+    });
+    mtlLoader.load( "models/ironman.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/ironman.obj", function ( object ) {
+            ironman = object;
+            ironman.position.set(-80, 24.75, 80);  
+            ironman.scale.set(0.05, 0.05, 0.05);
+            ironman.rotation.set(0, -4.75, 0);
+            scene.add(ironman);
+        });
+    });
+    mtlLoader.load( "models/bowling.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/bowling.obj", function ( object ) {
+            bowling = object;
+            bowling.position.set(-80, 15, 10);  
+            bowling.scale.set(5, 5, 5);
+            bowling.rotation.set(0, -5, 0);
+            scene.add(bowling);
+        });
+    });
+    mtlLoader.load( "models/lamp.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/lamp.obj", function ( object ) {
+            lamp1 = object;
+            lamp1.position.set(0, 50, -92.5);  
+            lamp1.scale.set(0.5, 0.5, 0.5);
+            lamp1.rotation.set(0, 0, 0);
+            scene.add(lamp1);
+        });
+    });
+    mtlLoader.load( "models/lamp.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/lamp.obj", function ( object ) {
+            lamp2 = object;
+            lamp2.position.set(90, 50, 0);  
+            lamp2.scale.set(0.5, 0.5, 0.5);
+            lamp2.rotation.set(0, 4.715, 0);
+            scene.add(lamp2);
+        });
+    });
+    mtlLoader.load( "models/sofa.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/sofa.obj", function ( object ) {
+            sofa = object;
+            sofa.position.set(51, -5, -58);  
+            sofa.scale.set(1.5, 1.5, 1.5);
+            sofa.rotation.set(0, 4.715, 0);
+            scene.add(sofa);
+        });
+    });
+    mtlLoader.load( "models/tv.mtl" , function ( materials ) {
+        materials.preload();
+        objLoader.setMaterials( materials );
+        objLoader.load( "models/tv.obj", function ( object ) {
+            tv = object;
+            tv.position.set(-80, 15, 40);  
+            tv.scale.set(0.3, 0.3, 0.3);
+            tv.rotation.set(-7.85, 0, 14.15);
+            scene.add(tv);
+        });
+    });
 
     objLoader.load( "models/bulb.obj", function ( object ) {
         bulb = object; 
-        bulb.position.set(82, 23.5, -85);  
+        bulb.position.set(-81, 23.5, -85);  
         bulb.scale.set(3, 3, 3);
         bulb.rotation.set(-7.6, -5, 0);
         scene.add(bulb);
     });
-    // objLoader.load( "models/x.obj", function ( object ) {
-    //     x = object;
-    //     x.position.set(0, 0, 0);  
-    //     x.scale.set(0, 0, 0);
-    //     x.rotation.set(0, 0, 0);
-    //     scene.add(x);
-    // });
 
     return this;
   }
