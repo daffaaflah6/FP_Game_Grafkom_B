@@ -33,13 +33,14 @@ function createGUI (withStats) {
 
   if (withStats) stats = initStats();
   for(i=0; i < scene.children.length; i++){
-    objs.push(scene.children[i]);  
+    objs.push(scene.children[i]);
+    sounds = new Howl({
+      src: ['sounds/background_music.mp3'],
+      loop: true,
+      volume: 1
+    });
+    sounds.play();
   }
-
-  sounds = new Howl({
-    src: ['sounds/background_music.mp3'], volume: 1
-  });
-  sounds.play();
 }
 
 function initStats() {
@@ -74,7 +75,7 @@ function onMouseDown (event) {
         document.getElementById('count').innerHTML = "";
         document.getElementById('count').innerHTML = parseInt(current) + 1;
         sound = new Howl({
-          src: ['sounds/pick.mp3'], volume: 0.5
+          src: ['sounds/pick.mp3'], volume: 0.75
         });
         sound.play();
         removeEntity(intersects[0].object);
