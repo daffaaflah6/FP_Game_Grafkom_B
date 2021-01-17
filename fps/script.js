@@ -35,6 +35,11 @@ function createGUI (withStats) {
   for(i=0; i < scene.children.length; i++){
     objs.push(scene.children[i]);  
   }
+
+  sounds = new Howl({
+    src: ['sounds/background_music.mp3'], volume: 1
+  });
+  sounds.play();
 }
 
 function initStats() {
