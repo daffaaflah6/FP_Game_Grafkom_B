@@ -67,26 +67,26 @@ class Map {
     var box = null;
     var boxes = [];
 
-		for ( var i = 0; i < 20; i++ ) {
-			box = new Physijs.SphereMesh(
-				new THREE.SphereGeometry( 2, 32, 24 ),
-				boxtexture
-      );
-      box.name = 'item';
-			box.position.set(
-				Math.random() * 100 - 25,
-				10 + Math.random() * 5,
-				Math.random() * 100 - 25
-			);
-			box.scale.set(
-				Math.random() * 1 + 0.5,
-				Math.random() * 1 + 0.5,
-				Math.random() * 1 + 0.5
-			);
-			box.castShadow = true;
-      this.map.push(box);
-      boxes.push( box );
-      ++this.map_size;
+    for ( var i = 0; i < 10; i++ ) {
+        box = new Physijs.SphereMesh(
+            new THREE.SphereGeometry( 2, 32, 24 ),
+            boxtexture
+        );
+        box.name = 'item';
+                box.position.set(
+                    Math.random() * 100 - 25,
+                    10 + Math.random() * 5,
+                    Math.random() * 100 - 25
+                );
+                box.scale.set(
+                    Math.random() * 1 + 0.5,
+                    Math.random() * 1 + 0.5,
+                    Math.random() * 1 + 0.5
+                );
+                box.castShadow = true;
+        this.map.push(box);
+        boxes.push( box );
+        ++this.map_size;
     }
     
     var table, wtable, tvf, gift, ironman, bowling, lamp1, lamp2, sofa, tv, bulb;
@@ -99,6 +99,7 @@ class Map {
             table.position.set(-81, 0, -77.5);  
             table.scale.set(6.5, 6.5, 6.5);
             table.rotation.set(0, 0, 0);
+            table.name = 'meja';
             scene.add(table);
         });
     });
@@ -132,6 +133,7 @@ class Map {
             gift.position.set(0, 8.5, 0);  
             gift.scale.set(0.35, 0.35, 0.35);
             gift.rotation.set(11, 0, 0);
+            gift.name = 'kado';
             scene.add(gift);
         });
     });
@@ -143,6 +145,7 @@ class Map {
             ironman.position.set(-80, 24.75, 80);  
             ironman.scale.set(0.05, 0.05, 0.05);
             ironman.rotation.set(0, -4.75, 0);
+            ironman.name = 'robot';
             scene.add(ironman);
         });
     });
@@ -154,6 +157,7 @@ class Map {
             bowling.position.set(-80, 15, 10);  
             bowling.scale.set(5, 5, 5);
             bowling.rotation.set(0, -5, 0);
+            bowling.name = 'bowling';
             scene.add(bowling);
         });
     });
@@ -165,6 +169,7 @@ class Map {
             lamp1.position.set(0, 50, -92.5);  
             lamp1.scale.set(0.5, 0.5, 0.5);
             lamp1.rotation.set(0, 0, 0);
+            lamp1.name = 'lamp1';
             scene.add(lamp1);
         });
     });
@@ -176,6 +181,7 @@ class Map {
             lamp2.position.set(90, 50, 0);  
             lamp2.scale.set(0.5, 0.5, 0.5);
             lamp2.rotation.set(0, 4.715, 0);
+            lamp2.name = 'lamp2';
             scene.add(lamp2);
         });
     });

@@ -23,22 +23,16 @@
     <script type="text/javascript" src="TheScene.js"></script>
     <script type="text/javascript" src="script.js"></script>
 
-    <div id="blocker">
-        <div id="instructions">      
-            <br />
-            Click to play !
-            <br />
-            W, A, S, D = Move
-            <br />
-            <br />Esc = Pause
-        </div>
-    </div>
-
     <style>
         body{
             margin: 0;
             overflow: hidden; 
             cursor: none;
+        }
+
+        .texting {
+            font-size: 1.5em;
+            color: white;
         }
 
         #blocker {
@@ -56,26 +50,12 @@
             width: 100%;
             height: 100%;
 
-            display: -webkit-box;
-            display: -moz-box;
-            display: box;
+            margin-top: 5%;
+            display: flex;
+            flex-direction: column;
 
-            -webkit-box-orient: horizontal;
-            -moz-box-orient: horizontal;
-            box-orient: horizontal;
 
-            -webkit-box-pack: center;
-            -moz-box-pack: center;
-            box-pack: center;
-
-            -webkit-box-align: center;
-            -moz-box-align: center;
-            box-align: center;
-
-            color: #ffffff;
-            text-align: center;
-
-             cursor: pointer;
+            cursor: pointer;
         }
 
         .imgProps {
@@ -134,27 +114,26 @@
 <div id="Stats-output">
 </div>
 
+<div id="blocker">
+    <div id="instructions">      
+        <div class="texting">First, Find something that can be slingshot ammo</div><br/>
+        <!-- <div class="texting">Second, Figure out something that can emmit enough luminousity and take it</div><br/>
+        <div class="texting">Third, Something that look like a human but pretty limited in its movement</div><br/>
+        <div class="texting">Fourth, You may need it for wrapping a present</div><br/>
+        <div class="texting">Fifth, This is a dangerous if you throw it recklessly (it has 3 hole)</div><br/> -->
+    </div>
+</div>
+
 <!-- Things must be found -->
 <div id="things">
     <div class="item">
-        <div class="itemContainer">
+        <!-- <div class="itemContainer">
             <img src="imgs/bulb.png" class="imgProps"/>
-        </div>
+        </div> -->
         <div class="countContainer" style="margin-left: 3%;">
-            <div id="count">0</div>
-            <div id="cross">&nbsp;x&nbsp;</div>
-            <div id="itemMaks">1</div>
-        </div>
-    </div>
 
-    <div class="item" style="margin-left: 12%;">
-        <div class="itemContainer">
-            <img src="imgs/bulb.png" class="imgProps"/>
-        </div>
-        <div class="countContainer" style="margin-left: 3%;">
-            <div id="count">0</div>
-            <div id="cross">&nbsp;x&nbsp;</div>
-            <div id="itemMaks">0</div>
+            <div style="color: white;">Stage end in <span id="time"></span> seconds</div>
+            <div id="count" style="color: white;">0</div>
         </div>
     </div>
 </div>
@@ -166,5 +145,37 @@
 <!-- Div which will hold the Output -->
 <div id="WebGL-output">
 </div>
+<script>
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        var interv = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+    
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+            display.textContent = minutes + ":" + seconds;
+    
+            if (--timer < 0) {
+                var count = parseInt(document.getElementById('count'));
+                if(count < 10) {
+                    document.getElementById('blocker').style.display = 'block';
+                    enableControls = false;
+                    controls.enabled = false;
+                    clearInterval(interv);
+                }else{
+                    clearInterval(interv);
+                }
+            }
+        }, 1000);
+    }
+    
+    window.onload = function () {
+        var halfMinutes = 60 * 0.3,
+            display = document.querySelector('#time');
+        startTimer(halfMinutes, display);
+    };
+</script>
 </body>
 </html>

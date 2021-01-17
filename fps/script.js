@@ -67,20 +67,32 @@ function onMouseDown (event) {
     if(event.buttons == 1 && blocker.style.display == 'none') {
       scene.onclick(event);
       console.log(intersects);
-      if(intersects[0].object.name == 'item'){
-        // var pickAudio = new Audio('fps/sounds/pick.mp3');
-        // pickAudio.play();
-        var current = document.getElementById('count').innerHTML;
-        document.getElementById('count').innerHTML = "";
-        document.getElementById('count').innerHTML = parseInt(current) + 1;
-        sound = new Howl({
-          src: ['sounds/pick.mp3'], volume: 0.5
-        });
-        sound.play();
-        removeEntity(intersects[0].object);
+
+      var current = document.getElementById('count').innerHTML;
+      
+      if(current == 10){
+        var instructions = document.getElementById( 'instructions' );
+        blocker.style.display = 'block';
+
+        instructions.style.display = '';
+
+        //title.innerHTML = "PAUSA";
+        instructions.innerHTML = "Finish";
+
       }else{
-        // pickAudio.stop();  
+        if(intersects[0].object.name == 'item'){
+          document.getElementById('count').innerHTML = "";
+          document.getElementById('count').innerHTML = parseInt(current) + 1;
+          sound = new Howl({
+            src: ['sounds/pick.mp3'], volume: 0.5
+          });
+          sound.play();
+          removeEntity(intersects[0].object);
+        }else{
+          // pickAudio.stop();  
+        }
       }
+     
       // removeEntity(intersects[0].object);
     }
   }
@@ -249,6 +261,7 @@ $(function () {
 
 
   var instructions = document.getElementById( 'instructions' );
+  var blocker = document.getElementById('blocker');
   var title = document.getElementById('title');
   var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
 
@@ -278,8 +291,7 @@ $(function () {
 
         instructions.style.display = '';
 
-        //title.innerHTML = "PAUSA";
-        instructions.style.fontSize = "50px";
+        title.innerHTML = "PAUSA";
         instructions.innerHTML = "PAUSE";
 
         enableControls = false;
